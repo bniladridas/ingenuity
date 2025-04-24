@@ -13,7 +13,15 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files - explicitly set the path for each file type
 app.use(express.static(path.join(__dirname, '.')));
+app.use('/styles.css', express.static(path.join(__dirname, 'styles.css')));
+app.use('/svg', express.static(path.join(__dirname, 'svg')));
+app.use('/png', express.static(path.join(__dirname, 'png')));
+app.use('/script.js', express.static(path.join(__dirname, 'script.js')));
+app.use('/security.js', express.static(path.join(__dirname, 'security.js')));
+app.use('/cookies.js', express.static(path.join(__dirname, 'cookies.js')));
 
 // Security middleware
 const security = {
@@ -110,7 +118,7 @@ const security = {
         res.setHeader('X-Content-Type-Options', 'nosniff');
         res.setHeader('X-Frame-Options', 'DENY');
         res.setHeader('X-XSS-Protection', '1; mode=block');
-        res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self';");
+        res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.together.xyz;");
         res.setHeader('Referrer-Policy', 'no-referrer');
         next();
     }
@@ -551,9 +559,41 @@ app.get('/api/generate', security.rateLimiter.limit, security.validateInput, asy
     }
 });
 
-// Serve the main HTML file
+// Serve HTML pages
 app.get('/', (_, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/about', (_, res) => {
+    res.sendFile(path.join(__dirname, 'about.html'));
+});
+
+app.get('/transformers', (_, res) => {
+    res.sendFile(path.join(__dirname, 'transformers.html'));
+});
+
+app.get('/ai-ethics', (_, res) => {
+    res.sendFile(path.join(__dirname, 'ai-ethics.html'));
+});
+
+app.get('/advanced-ai', (_, res) => {
+    res.sendFile(path.join(__dirname, 'advanced-ai.html'));
+});
+
+app.get('/documentation', (_, res) => {
+    res.sendFile(path.join(__dirname, 'documentation.html'));
+});
+
+app.get('/partners', (_, res) => {
+    res.sendFile(path.join(__dirname, 'partners.html'));
+});
+
+app.get('/settings', (_, res) => {
+    res.sendFile(path.join(__dirname, 'settings.html'));
+});
+
+app.get('/terms', (_, res) => {
+    res.sendFile(path.join(__dirname, 'terms.html'));
 });
 
 // Start the server
