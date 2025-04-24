@@ -1,24 +1,16 @@
 {
   "version": 2,
   "name": "synthara-ai",
-  "builds": [
-    { "src": "*.html", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "svg/**", "use": "@vercel/static" },
-    { "src": "png/**", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/about", "dest": "/about.html" },
-    { "src": "/transformers", "dest": "/transformers.html" },
-    { "src": "/ai-ethics", "dest": "/ai-ethics.html" },
-    { "src": "/advanced-ai", "dest": "/advanced-ai.html" },
-    { "src": "/documentation", "dest": "/documentation.html" },
-    { "src": "/partners", "dest": "/partners.html" },
-    { "src": "/settings", "dest": "/settings.html" },
-    { "src": "/terms", "dest": "/terms.html" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/transformers", "destination": "/transformers.html" },
+    { "source": "/ai-ethics", "destination": "/ai-ethics.html" },
+    { "source": "/advanced-ai", "destination": "/advanced-ai.html" },
+    { "source": "/documentation", "destination": "/documentation.html" },
+    { "source": "/partners", "destination": "/partners.html" },
+    { "source": "/settings", "destination": "/settings.html" },
+    { "source": "/terms", "destination": "/terms.html" }
   ],
   "headers": [
     {
