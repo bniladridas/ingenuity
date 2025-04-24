@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /about.html
+Allow: /transformers.html
+Allow: /ai-ethics.html
+Allow: /advanced-ai.html
+Allow: /documentation.html
+Allow: /partners.html
+Allow: /terms.html
+
+Sitemap: https://syntharaai-eng.vercel.app/sitemap.xml

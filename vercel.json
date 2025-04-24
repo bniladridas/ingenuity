@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "name": "synthara-ai",
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "svg/**", "use": "@vercel/static" },
+    { "src": "png/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/about", "dest": "/about.html" },
+    { "src": "/transformers", "dest": "/transformers.html" },
+    { "src": "/ai-ethics", "dest": "/ai-ethics.html" },
+    { "src": "/advanced-ai", "dest": "/advanced-ai.html" },
+    { "src": "/documentation", "dest": "/documentation.html" },
+    { "src": "/partners", "dest": "/partners.html" },
+    { "src": "/settings", "dest": "/settings.html" },
+    { "src": "/terms", "dest": "/terms.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';" }
+      ]
+    }
+  ]
+}
