@@ -115,6 +115,104 @@
             font-size: 12px;
             color: #777;
         }
+
+        /* Word Scramble Game Styles */
+        .game-container {
+            border: 1px solid #eaeaea;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 3px;
+            background-color: #fafafa;
+        }
+
+        .game-title {
+            font-size: 15px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .game-description {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 16px;
+        }
+
+        .scrambled-word {
+            font-family: monospace;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            color: #333;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .game-input {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        #word-guess {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid #eaeaea;
+            border-radius: 3px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #check-button {
+            padding: 8px 12px;
+            background-color: #f5f5f5;
+            border: 1px solid #eaeaea;
+            border-radius: 3px;
+            margin-left: 8px;
+            cursor: pointer;
+            color: #333;
+            font-size: 13px;
+        }
+
+        #check-button:hover {
+            background-color: #eaeaea;
+        }
+
+        .game-feedback {
+            font-size: 13px;
+            color: #555;
+            margin-top: 8px;
+            min-height: 20px;
+        }
+
+        .game-hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        .correct-answer {
+            color: #4caf50;
+        }
+
+        .wrong-answer {
+            color: #f44336;
+        }
+
+        .new-game-button {
+            padding: 6px 10px;
+            background-color: white;
+            border: 1px solid #eaeaea;
+            border-radius: 3px;
+            cursor: pointer;
+            color: #555;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .new-game-button:hover {
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
@@ -134,6 +232,19 @@
             <div class="important-note">
                 <h3>Internet Connection Required</h3>
                 <p>This application requires an active internet connection to function. All computation and language model processing is performed on remote servers via Synthara AI's infrastructure, not locally on your device.</p>
+            </div>
+
+            <div class="game-container">
+                <div class="game-title">AI Term Scramble</div>
+                <div class="game-description">Test your AI knowledge! Unscramble these AI-related terms to reveal common concepts in artificial intelligence.</div>
+                <div class="scrambled-word" id="scrambled-word">SRRFMTAONER</div>
+                <div class="game-input">
+                    <input type="text" id="word-guess" placeholder="Enter your guess">
+                    <button id="check-button">Check</button>
+                </div>
+                <div class="game-feedback" id="game-feedback"></div>
+                <div class="game-hint" id="game-hint"></div>
+                <button class="new-game-button" id="new-game-button">New Word</button>
             </div>
 
             <div class="doc-section">
@@ -270,5 +381,7 @@
 
     <script src="security.js"></script>
     <script src="cookies.js"></script>
+    <script src="word-scramble.js"></script>
+    <script src="connection-status.js"></script>
 </body>
 </html>

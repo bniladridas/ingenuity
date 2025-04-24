@@ -36,3 +36,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved documentation for running the software locally
 - Enhanced security.js with slopsquatting detection
 - Added CONTRIBUTING.md and SECURITY.md files
+
+## [1.0.2] - 2025-04-26
+
+### Changed
+- Updated main logo color from white to black for better visibility
+- Kept favicon in white color for better contrast in browser tabs
+- Changed Terms of Service link in cookie banner to grey for consistent styling
+
+### Added
+- Interactive AI Term Scramble game to the documentation page headline section
+- Offline connection alert feature that displays a warning when internet connection is lost
+- Added offline alert to all pages of the website for consistent user experience
