@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Das"
+    given-names: "Niladri"
+    orcid: "https://orcid.org/0009-0002-6619-5691"
+title: "Synthara AI"
+version: 1.0.1
+date-released: 2025-04-25
+url: "https://github.com/bniladridas/syntharaai-eng"
+repository-code: "https://github.com/bniladridas/syntharaai-eng"
+license: MIT
+keywords:
+  - artificial intelligence
+  - language models
+  - education
+  - transformer architecture
+  - AI ethics
+abstract: >
+  Synthara AI is a minimalist web interface for AI interaction, 
+  designed to be permanently free for token generation and inference. 
+  The platform includes educational resources on transformer architecture, 
+  responsible AI ethics, and advanced AI concepts.
