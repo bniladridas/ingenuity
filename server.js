@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 const axios = require('axios');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 // Load environment variables
 dotenv.config();
@@ -130,7 +131,7 @@ app.use(security.securityHeaders);
 // API endpoint to proxy requests to Together API
 app.post('/api/generate', security.rateLimiter.limit, security.validateInput, async (req, res) => {
     try {
-        const { prompt, model } = req.body;
+        const { prompt, model, api_key } = req.body;
 
         // Use the selected model from the UI, or DeepSeek as default if none provided
         const selectedModel = model || "deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free";
@@ -139,7 +140,16 @@ app.post('/api/generate', security.rateLimiter.limit, security.validateInput, as
             return res.status(400).json({ error: 'Prompt is required' });
         }
 
-        const apiKey = process.env.TOGETHER_API_KEY;
+        // Use user-provided API key for Qwen3 model, otherwise use environment variable
+        let apiKey = process.env.TOGETHER_API_KEY;
+
+        // If it's the Qwen3 model and user provided an API key, use that instead
+        if (selectedModel.includes('Qwen') && api_key) {
+            apiKey = api_key;
+            console.log('Using user-provided API key for Qwen3 model');
+        } else if (selectedModel.includes('Qwen') && !api_key) {
+            return res.status(400).json({ error: 'API key required for Qwen3 model' });
+        }
 
         if (!apiKey) {
             return res.status(500).json({ error: 'API key not configured' });
@@ -256,12 +266,26 @@ app.get('/api/generate', security.rateLimiter.limit, security.validateInput, asy
     try {
         const prompt = req.query.prompt;
         const model = req.query.model || "deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free";
+        // Get user-provided API key if available (for Qwen3 model)
+        const userApiKey = req.query.api_key;
 
         if (!prompt) {
             return res.status(400).json({ error: 'Prompt is required' });
         }
 
-        const apiKey = process.env.TOGETHER_API_KEY;
+        // Use user-provided API key for Qwen3 model, otherwise use environment variable
+        let apiKey = process.env.TOGETHER_API_KEY;
+
+        // If it's the Qwen3 model and user provided an API key, use that instead
+        if (model.includes('Qwen') && userApiKey) {
+            apiKey = userApiKey;
+            console.log('Using user-provided API key for Qwen3 model');
+        } else if (model.includes('Qwen') && !userApiKey) {
+            return res.write(`data: ${JSON.stringify({
+                type: 'error',
+                error: 'API key required for Qwen3 model'
+            })}\n\n`);
+        }
 
         if (!apiKey) {
             return res.status(500).json({ error: 'API key not configured' });
@@ -594,6 +618,55 @@ app.get('/settings', (_, res) => {
 
 app.get('/terms', (_, res) => {
     res.sendFile(path.join(__dirname, 'terms.html'));
+});
+
+app.get('/qwen3-235b', (_, res) => {
+    res.sendFile(path.join(__dirname, 'qwen3-235b.html'));
+});
+
+app.get('/gemini', (_, res) => {
+    res.sendFile(path.join(__dirname, 'gemini.html'));
+});
+
+// API endpoint for Gemini model
+app.post('/api/gemini', security.rateLimiter.limit, security.validateInput, async (req, res) => {
+    try {
+        const { prompt } = req.body;
+
+        if (!prompt) {
+            return res.status(400).json({ error: 'Prompt is required' });
+        }
+
+        const apiKey = process.env.GEMINI_API_KEY;
+
+        if (!apiKey) {
+            return res.status(500).json({ error: 'Gemini API key not configured' });
+        }
+
+        console.log(`Using Gemini model with prompt: ${prompt.substring(0, 50)}...`);
+
+        // Initialize the Gemini API
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+
+        // Generate content
+        const result = await model.generateContent(prompt);
+        const response = result.response.text();
+
+        // Estimate token count (actual count not provided by API)
+        const estimatedTokenCount = Math.round(prompt.length / 4) + Math.round(response.length / 4);
+
+        res.json({
+            response: response,
+            tokenCount: estimatedTokenCount
+        });
+    } catch (error) {
+        console.error('Error calling Gemini API:', error.message);
+        res.status(500).json({
+            error: 'Failed to get response from Gemini API',
+            details: error.message
+        });
+    }
 });
 
 // Start the server

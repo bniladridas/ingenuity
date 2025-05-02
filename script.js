@@ -47,14 +47,14 @@ const QUESTION_SUGGESTIONS = {
         "How might advanced AI impact society in the future?"
     ],
     general: [
-        "How can I use Synthara AI for my research?",
-        "What makes Synthara AI different from other platforms?",
+        "How can I use SyntharaAI for my research?",
+        "What makes SyntharaAI different from other platforms?",
         "Explain how token generation works",
         "What educational resources do you recommend for AI beginners?",
         "How can I contribute to responsible AI development?",
         "What are the latest developments in AI research?",
-        "How does Synthara AI ensure user privacy?",
-        "What computational resources power Synthara AI?",
+        "How does SyntharaAI ensure user privacy?",
+        "What computational resources power SyntharaAI?",
         "How can I learn more about machine learning?",
         "What are the best practices for prompt engineering?"
     ]

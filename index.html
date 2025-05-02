@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synthara AI</title>
-    <meta name="description" content="Synthara AI - Inspiration and motivation | Permanently free for token generation & inference">
+    <title>SyntharaAI</title>
+    <meta name="description" content="SyntharaAI - Inspiration and motivation | Permanently free for token generation & inference">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://syntharaai-eng.vercel.app/">
-    <meta property="og:title" content="Synthara AI">
+    <meta property="og:title" content="SyntharaAI">
     <meta property="og:description" content="Inspiration and motivation | Permanently free for token generation & inference">
     <meta property="og:image" content="png/og-image-detailed.png">
     <meta property="article:author" content="https://www.linkedin.com/in/bniladridas">
@@ -17,7 +17,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://syntharaai-eng.vercel.app/">
-    <meta property="twitter:title" content="Synthara AI">
+    <meta property="twitter:title" content="SyntharaAI">
     <meta property="twitter:description" content="Inspiration and motivation | Permanently free for token generation & inference">
     <meta property="twitter:image" content="png/og-image-detailed.png">
     <meta property="twitter:creator" content="@bniladridas">
@@ -27,12 +27,157 @@
 
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="svg/favicon.svg" type="image/svg+xml">
+    <style>
+        /* Default Model Visualization */
+        .model-visualization {
+            width: 100%;
+            max-width: 550px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .model-header {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .model-title {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .model-subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .model-graphic {
+            height: 180px;
+            background-image: url('Blurred Corridor Scene.jpeg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .default-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+        }
+
+        .default-node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .default-node-1 {
+            animation: float-around 8s infinite ease-in-out;
+            animation-delay: 0s;
+        }
+
+        .default-node-2 {
+            animation: float-around 8s infinite ease-in-out;
+            animation-delay: 1.3s;
+        }
+
+        .default-node-3 {
+            animation: float-around 8s infinite ease-in-out;
+            animation-delay: 2.6s;
+        }
+
+        .default-node-4 {
+            animation: float-around 8s infinite ease-in-out;
+            animation-delay: 3.9s;
+        }
+
+        .default-node-5 {
+            animation: float-around 8s infinite ease-in-out;
+            animation-delay: 5.2s;
+        }
+
+        .default-node-6 {
+            animation: float-around 8s infinite ease-in-out;
+            animation-delay: 6.5s;
+        }
+
+        @keyframes float-around {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.4;
+            }
+            25% {
+                transform: translate(80px, 40px) scale(3);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(160px, 0) scale(2);
+                opacity: 0.8;
+            }
+            75% {
+                transform: translate(80px, -40px) scale(4);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.4;
+            }
+        }
+
+        .model-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 12px;
+            background-color: white;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .image-attribution {
+            font-size: 10px;
+            color: #888;
+            text-align: right;
+            padding: 4px 8px;
+            background-color: white;
+            border-top: 1px solid #eaeaea;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo-container">
             <img src="svg/logo.svg" alt="Logo" class="logo">
-            <h1>Synthara AI</h1>
+            <h1>SyntharaAI</h1>
         </div>
     </header>
 
@@ -47,6 +192,39 @@
         </div>
 
         <div class="subtitle">inspiration and motivation | <span style="color: #555;">permanently free for token generation & inference</span></div>
+
+        <!-- Default Model Visualization -->
+        <div class="model-visualization">
+            <div class="model-header">
+                <div class="model-title">SyntharaAI</div>
+                <div class="model-subtitle">Advanced Language Processing</div>
+            </div>
+            <div class="model-graphic">
+                <div class="default-animation">
+                    <div class="default-node default-node-1"></div>
+                    <div class="default-node default-node-2"></div>
+                    <div class="default-node default-node-3"></div>
+                    <div class="default-node default-node-4"></div>
+                    <div class="default-node default-node-5"></div>
+                    <div class="default-node default-node-6"></div>
+                </div>
+            </div>
+            <div class="model-stats">
+                <div class="stat-item">
+                    <div class="stat-value">Fast</div>
+                    <div class="stat-label">Response</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">High</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">Free</div>
+                    <div class="stat-label">Access</div>
+                </div>
+            </div>
+            <div class="image-attribution">Background image by Pablo Stanley</div>
+        </div>
 
         <div class="input-container">
             <input type="text" id="prompt-textarea" placeholder="Ask a question...">
@@ -84,6 +262,10 @@
             <span class="footer-divider">|</span>
             <a href="advanced-ai.html">Advanced AI</a>
             <span class="footer-divider">|</span>
+            <a href="qwen3-235b.html">Qwen3 235B</a>
+            <span class="footer-divider">|</span>
+            <a href="gemini.html">Gemini</a>
+            <span class="footer-divider">|</span>
             <a href="partners.html">Partners</a>
             <span class="footer-divider">|</span>
             <a href="settings.html">Settings</a>
@@ -93,7 +275,7 @@
             <a href="about.html">About</a>
         </div>
         <div class="copyright">
-            &copy; 2025 Synthara AI. All rights reserved. Logo and interface design used under MIT License.
+            &copy; 2025 SyntharaAI. All rights reserved. Logo and interface design used under MIT License.
         </div>
     </footer>
 
@@ -112,5 +294,27 @@
     <script src="cookies.js"></script>
     <script src="script.js"></script>
     <script src="connection-status.js"></script>
+    <script>
+        // Initialize the visualization nodes with random positions
+        document.addEventListener('DOMContentLoaded', function() {
+            const nodes = document.querySelectorAll('.default-node');
+            const graphic = document.querySelector('.model-graphic');
+
+            if (graphic && nodes.length > 0) {
+                const graphicWidth = graphic.offsetWidth;
+                const graphicHeight = graphic.offsetHeight;
+
+                nodes.forEach(node => {
+                    // Random starting position within the graphic
+                    const randomX = Math.floor(Math.random() * (graphicWidth - 20)) + 10;
+                    const randomY = Math.floor(Math.random() * (graphicHeight - 20)) + 10;
+
+                    // Apply random starting position
+                    node.style.left = `${randomX}px`;
+                    node.style.top = `${randomY}px`;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
